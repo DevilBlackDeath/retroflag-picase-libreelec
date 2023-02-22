@@ -32,18 +32,18 @@ fi
 #-----------------------------------------------------------
 
 #Download Python script-----------------------------
-sudo mkdir "/opt/RetroFlag"
+mkdir "/opt/RetroFlag"
 script=/opt/RetroFlag/SafeShutdown.py
 wget -O $script "$SourcePath/SafeShutdown.py"
 
 #Enable Python script to run on start up------------
 RC=/etc/rc.local
 
-if grep -q "sudo python $script &" "$RC";
+if grep -q "python $script &" "$RC";
 	then
 		echo "File $RC already configured. Doing nothing."
 	else
-		sed -i -e "s/^exit 0/sudo python \/opt\/RetroFlag\/SafeShutdown.py \&\n&/g" "$RC"
+		sed -i -e "s/^exit 0/python \/opt\/RetroFlag\/SafeShutdown.py \&\n&/g" "$RC"
 		echo "File /etc/rc.local configured."
 fi
 #-----------------------------------------------------------
@@ -51,7 +51,7 @@ fi
 #Reboot to apply changes----------------------------
 echo "RetroFlag Pi Case installation done. Will now reboot after 3 seconds."
 sleep 3
-sudo reboot
+reboot
 #-----------------------------------------------------------
 
 
