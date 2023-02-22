@@ -10,7 +10,7 @@ fi
 #-----------------------------------------------------------
 
 #RetroFlag pw io ;2:in ;3:in ;4:in ;14:out 1----------------------------------------
-File=/nano/config.txt
+File=/flash/config.txt
 mount -o remount,rw /flash
 
 wget -O  "/boot/overlays/RetroFlag_pw_io.dtbo" "$SourcePath/RetroFlag_pw_io.dtbo"
@@ -41,14 +41,14 @@ script=/storage/RetroFlag/SafeShutdown.py
 wget -O $script "$SourcePath/SafeShutdown.py"
 
 #Enable Python script to run on start up------------
-RC=/etc/rc.local
+RC=/storage/.config/autostart.sh
 
 if grep -q "python $script &" "$RC";
 	then
 		echo "File $RC already configured. Doing nothing."
 	else
 		sed -i -e "s/^exit 0/python \/opt\/RetroFlag\/SafeShutdown.py \&\n&/g" "$RC"
-		echo "File /etc/rc.local configured."
+		echo "File $RC configured."
 fi
 #-----------------------------------------------------------
 
