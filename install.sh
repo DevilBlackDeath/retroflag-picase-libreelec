@@ -2,13 +2,6 @@
 
 SourcePath=https://raw.githubusercontent.com/DevilBlackDeath/retroflag-picase-libreelec/master
 
-#Check if root--------------------------------------
-if [[ $EUID -ne 0 ]]; then
-   echo "Please execute script as root." 
-   exit 1
-fi
-#-----------------------------------------------------------
-
 #RetroFlag pw io ;2:in ;3:in ;4:in ;14:out 1----------------------------------------
 File=/flash/config.txt
 mount -o remount,rw /flash
