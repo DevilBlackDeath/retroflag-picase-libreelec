@@ -25,9 +25,9 @@ def poweroff():
 	while True:
 		#self.assertEqual(GPIO.input(powerPin), GPIO.LOW)
 		GPIO.wait_for_edge(powerPin, GPIO.FALLING)
-		os.system("sudo killall kodi > /dev/null 2>&1")
-		os.system("sudo sleep 5s")
-		os.system("sudo shutdown -r now")
+		os.system("killall kodi > /dev/null 2>&1")
+		os.system("sleep 5s")
+		os.system("shutdown -r now")
 
 #blinks the LED to signal button being pushed
 def ledBlink():
@@ -47,9 +47,9 @@ def reset():
 	while True:
 		#self.assertEqual(GPIO.input(resetPin), GPIO.LOW)
 		GPIO.wait_for_edge(resetPin, GPIO.FALLING)
-		os.system("sudo killall kodi > /dev/null 2>&1")
-		os.system("sudo sleep 5s")
-		os.system("sudo shutdown -r now")
+		os.system("killall kodi > /dev/null 2>&1")
+		os.system("sleep 5s")
+		os.system("shutdown -r now")
 
 
 if __name__ == "__main__":
