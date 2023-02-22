@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SourcePath=https://raw.githubusercontent.com/RetroFlag/retroflag-picase/master
+SourcePath=https://raw.githubusercontent.com/DevilBlackDeath/retroflag-picase-libreelec/master
 
 #Check if root--------------------------------------
 if [[ $EUID -ne 0 ]]; then
@@ -10,7 +10,9 @@ fi
 #-----------------------------------------------------------
 
 #RetroFlag pw io ;2:in ;3:in ;4:in ;14:out 1----------------------------------------
-File=/boot/config.txt
+File=/nano/config.txt
+mount -o remount,rw /flash
+
 wget -O  "/boot/overlays/RetroFlag_pw_io.dtbo" "$SourcePath/RetroFlag_pw_io.dtbo"
 if grep -q "RetroFlag_pw_io" "$File";
 	then
@@ -29,11 +31,13 @@ if grep -q "enable_uart" "$File";
 		echo "UART enabled."
 fi
 
+mount -o remount,ro /flash
+
 #-----------------------------------------------------------
 
 #Download Python script-----------------------------
-mkdir "/opt/RetroFlag"
-script=/opt/RetroFlag/SafeShutdown.py
+mkdir "/storage/RetroFlag"
+script=/storage/RetroFlag/SafeShutdown.py
 wget -O $script "$SourcePath/SafeShutdown.py"
 
 #Enable Python script to run on start up------------
